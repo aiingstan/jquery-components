@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Autocomplete - Categories</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <style>
+    .customercombo-country {
+      font-weight: bold;
+      padding: .2em .4em;
+      margin: .8em 0 .2em;
+      line-height: 1.5;
+    }
+      
+    #search ul{
+        height: 100px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+    $(function () {
+      $.widget("custom.customercombo", $.ui.autocomplete, {
+        _create: function () {
+          this._super();
+          this.widget().menu("option", "items", "> :not(.customercombo-country)");
+        },
+        _renderMenu: function (ul, items) {
+          var that = this,
+            currentCountry = "";
+          $.each(items, function (index, item) {
+            var li;
+            if (item.country != currentCountry) {
+              ul.append("<li class='ui-autocomplete-category'>" + item.country + "</li>");
+              currentCountry = item.country;
+            }
+            li = that._renderItemData(ul, item);
+            if (item.country) {
+              li.attr("aria-label", item.country + " : " + item.name);
+            }
+          });
+        },
+        _renderItem: function (ul, item) {
+            return $("<li>")
+                .attr("data-value", item.id)
+                .append(item.name + '(' + item.postcode + ')')
+                .appendTo(ul);
+        }
+      });
+  
+
+      $("#search").customercombo({
+        delay: 0.25,
+        source: 'customers.json'
+      });
+    });
+  </script>
+</head>
+
+<body>
+
+  <label for="search">客户: </label>
+  <input id="search">
+
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+[
+    {
+      "id": 1,
+      "name": "Alphabet Google",
+      "country": "USA",
+      "postcode": "023123"
+    }, {
+      "id": 2,
+      "name": "Facebook",
+      "country": "USA",
+      "postcode": "652812"
+    }, {
+      "id": 3,
+      "name": "General Electric",
+      "country": "USA",
+      "postcode": "663545"
+    }, {
+      "id": 4,
+      "name": "Huawei",
+      "country": "China",
+      "postcode": "225098"
+    }, {
+      "id": 5,
+      "name": "Denso",
+      "country": "Japan",
+      "postcode": "098766"
+    }
+  ]
